@@ -41,3 +41,21 @@ console.log(+idade + 5) // 33
 
 var possuiFaculdade = true
 console.log(+possuiFaculdade) // 1
+
+/* truthy e falsy:
+falsy:
+if(false)
+if(0) ou -0
+if(NaN)
+if(null)
+if(undefined)
+if('') ou "" ou ``
+
+truthy:
+if(true)
+if(1)
+if(' ')
+if('andré')
+if(-5)
+if({})
+*/

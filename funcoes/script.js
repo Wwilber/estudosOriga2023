@@ -1,43 +1,102 @@
-// OPERADORES ARITMÉTICOS:
+//FUNÇÕES: Bloco de código que pode ser executado e reutilizado. Valores podem ser passados por uma função e a mesma retorna outro valor.
 
-var soma = 100 + 50
-var subtracao = 100 - 50
-var divisao = 100 / 50
-var multiplicacao = 100 * 50
-var expoente = 10 ** 2
-var restoDivisao = 165315 % 4
+function areaQuadrado(lado) {
+  return lado * lado
+}
 
-console.log(soma)
-console.log(subtracao)
-console.log(divisao)
-console.log(multiplicacao)
-console.log(expoente)
-console.log(restoDivisao)
+var quadrado = areaQuadrado(4)
 
-// OPERADORES ARITMÉTICOS(STRING):
+console.log(quadrado)
 
-var soma1 = '100' + 10
-var subtracao1 = '100' - 50
-var divisao1 = 'comprei 100' / 2 // NaN Not a Number
-var multiplicacao1 = '100' * '2'
-console.log(soma1)
-console.log(subtracao1)
-console.log(divisao1)
-console.log(multiplicacao1)
+console.log(areaQuadrado(3))
 
-var teste = isNaN(divisao1)
-console.log(teste)
+function mensagem() {
+  console.log('teste')
+}
+mensagem()
 
-// OPERADORES UNÁRIOS:
+// Parâmetros e Argumentos:
+// Ao criar uma função, você pode definir parâmetros.
+// Ao executar uma função, você pode passar argumentos.
 
-var frase = 'Isso é um teste'
-;+frase //NaN
-;-frase //NaN
+// peso e altura são os parÂmetros:
+function imc(peso, altura) {
+  const imc = peso / altura ** 2
+  return imc
+}
+console.log(imc(80, 1.8))
+console.log(imc(60, 1.7))
 
-var idade = '28'
-;+idade // 28 (numero)
-;-idade // -28 (numero)
-console.log(+idade + 5) // 33
+function corFavorita(cor) {
+  if (cor === 'azul') {
+    return 'Você gosta do Céu'
+  } else if (cor === 'verde') {
+    return 'Você gosta de mato'
+  } else {
+    return 'Você não gosta de nada'
+  }
+}
+console.log(corFavorita())
 
-var possuiFaculdade = true
-console.log(+possuiFaculdade) // 1
+// Argumentos podem ser funções.
+// Chamadas de CAllback, geralmente são funções que ocorrem após algum evento.
+
+addEventListener('click', function () {
+  console.log('Clicou')
+})
+// a função possui dois argumentos
+// primeiro é a string 'click'
+// segundo é uma função anônima
+// função anônima é aquela em que o nome da função não é definido, escritas como: function() {} ou () => {}
+
+// PODE OU NÃO RETORNAR UM VALOR: Quando não definimos o return, ela irá retornar "UNDEFINED". O código interno da função é executado normalmente, independente de existir valor de return ou não.
+
+function imc2(peso, altura) {
+  const imc = peso / altura ** 2
+  console.log(imc)
+  return imc
+}
+imc2(30, 1.4) // retorna o imc2
+console.log(imc2(180, 1.4)) // retorna o imc e undefined
+
+// VALORES RETORNADOS: Uma função pode retornar qualquer tipo de dados e até outras funções: ** não é boa prática função retornar tipos de dados diferentes.
+function terceiraIdade(idade) {
+  if (typeof idade !== 'number') {
+    return 'Por favor preencha um número!'
+  } else if (idade >= 60) {
+    return true
+  } else {
+    return false
+  }
+}
+
+console.log(terceiraIdade(30.0))
+
+// ESCOPO: variáveis e funções definidas dentro de um bloco {}, não são visíveis fora dele.
+
+// var totalPaises = 193
+
+function faltaVisitar(paisesVisitados) {
+  var totalPaises = 193
+  return `falta visitar ${totalPaises - paisesVisitados} paises`
+}
+// console.log(totalPaises) // erro, total países não definido.
+console.log(faltaVisitar(20))
+
+// ESCOPO LÉXICO: Funções conseguem acessar variáveis que foram criadas no contexto pai:
+
+var profissao = 'Designer'
+
+function dados() {
+  var nome = 'André'
+  var idade = 28
+  function outrosDados() {
+    var endereco = 'Rio de Janeiro'
+    var idade = 29
+    return `${nome}, ${idade}, ${endereco}, ${profissao}`
+  }
+  return outrosDados()
+}
+console.log(dados())
+
+// HOISTING: Antes de executar uma função, o JS 'move' todas as funções declaradas para a memória:
